@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/api/recruiter")
 public class RecruiterController {
-    public class ThirdPartyController {
 
         @GetMapping("/hello")
         public String sayHello() {
-            return "Hello from ThirdParty Service!";}
-    }
+            return "Hello from Recruiter Service!";
+        }
+
 }
