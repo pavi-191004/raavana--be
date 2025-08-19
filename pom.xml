@@ -19,7 +19,7 @@
     <description>Parent project for Raavana microservices</description>
 
     <modules>
-<!--        <module>thirdparty-service</module>-->
+        <module>thirdparty</module>
         <!-- <module>discovery-server</module> -->
         <!-- <module>api-gateway</module> -->
     </modules>

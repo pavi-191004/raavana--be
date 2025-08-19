@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="0f4398a3-cac9-4d90-bcd6-9897a8ad051b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/.gitattributes" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/ThirdPartyServiceApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/controller/ThirdPartyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/dto/ThirdPartyDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/entity/ThirdPartyEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/repository/ThirdPartyRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/service/ThirdPartyService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/src/test/java/com/raavana/thirdparty/ThirdPartyServiceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Kavishree24&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/pavi-191004/raavana--be.git&quot;,
+    &quot;accountId&quot;: &quot;02db3799-4695-4e07-8232-0b4beec40c8f&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="31RsknADqkWlIzTyE4oU0x8H8JE" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ThirdPartyServiceApplication.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "thirdparty"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="raavana--be" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="raavana--be" />
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0f4398a3-cac9-4d90-bcd6-9897a8ad051b" name="Changes" comment="" />
+      <created>1755498364398</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1755498364398</updated>
+    </task>
+    <servers />
+  </component>
+</project>
