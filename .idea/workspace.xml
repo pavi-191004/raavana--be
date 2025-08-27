@@ -5,24 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f4398a3-cac9-4d90-bcd6-9897a8ad051b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/ThirdPartyServiceApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/controller/ThirdPartyController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/dto/ThirdPartyDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/entity/ThirdPartyEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/repository/ThirdPartyRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/service/ThirdPartyService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/thirdparty/src/test/java/com/raavana/thirdparty/ThirdPartyServiceApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/thirdparty/src/main/resources/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thirdparty/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/thirdparty/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/ThirdPartyServiceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/ThirdPartyServiceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/controller/ThirdPartyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/thirdparty/src/main/java/com/raavana/thirdparty/controller/ThirdPartyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thirdparty/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/thirdparty/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,16 +45,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ThirdPartyServiceApplication.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "thirdparty"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.DiscoveryServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ThirdPartyServiceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.DiscoveryServerApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.raavana-be [clean,compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.raavana-be [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.raavana-be [compile].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.raavana-be [install].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;#2 on thirdparty&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\raavana--be\thirdparty\src\main\java\com\raavana\thirdparty" />
+      <recent name="D:\raavana--be\thirdparty\src\main\java\com\raavana\thirdparty\service" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean compile" />
+    </option>
+  </component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="raavana--be" />

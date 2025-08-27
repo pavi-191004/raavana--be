@@ -1,0 +1,17 @@
+openapi: 3.0.0
+info:
+  title: Third Party Service API
+  description: API specification for the Third Party microservice.
+  version: 1.0.0
+paths:
+  /hi:
+    get:
+      summary:  Hi from Third Party Service
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/plain:
+              schema:
+                type: string
+
