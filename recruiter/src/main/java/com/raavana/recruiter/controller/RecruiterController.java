@@ -12,11 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/recruiter")
 public class RecruiterController implements HelloApi {
 
-        @GetMapping("/hello")
-        public String sayHello() {
-            return "Hello from Recruiter Service!";
-        }
-
     @Override
     public ResponseEntity<String> helloGet() {
         return ResponseEntity.ok("Hello from Recruiter Service!");
