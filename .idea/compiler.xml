@@ -9,12 +9,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="recruiter-service" />
         <module name="discovery-server" />
+        <module name="discovery-server (1)" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="discovery-server" options="-parameters" />
+      <module name="discovery-server (1)" options="-parameters" />
       <module name="recruiter-service" options="-parameters" />
     </option>
   </component>
