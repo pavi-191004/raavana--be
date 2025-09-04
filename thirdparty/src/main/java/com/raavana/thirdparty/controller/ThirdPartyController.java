@@ -14,6 +14,6 @@ public class ThirdPartyController implements HiApi {
 
     @Override
     public ResponseEntity<String> hiGet() {
-        return ResponseEntity.ok("hi from thirdParty service ");
+        return ResponseEntity.ok("hello from thirdParty service ");
     }
 }
