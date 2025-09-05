@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/thirdParty")
+@RequestMapping("/api")
 @RequiredArgsConstructor
 public class ThirdPartyController implements HiApi {
 
     @Override
     public ResponseEntity<String> hiGet() {
-        return ResponseEntity.ok("hello from thirdParty service ");
+        return ResponseEntity.ok("hi from thirdParty service ");
     }
 }
