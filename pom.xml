@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.4</version>
+        <version>3.2.1</version>
         <relativePath/>
     </parent>
 
@@ -19,9 +19,9 @@
     <description>Parent project for Raavana microservices</description>
 
     <modules>
-<!--        <module>thirdparty-service</module>-->
-        <!-- <module>discovery-server</module> -->
-        <!-- <module>api-gateway</module> -->
+        <module>thirdparty</module>
+         <module>discovery-server</module>
+         <module>apigateway</module>
     </modules>
 
     <properties>
@@ -41,23 +41,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>
