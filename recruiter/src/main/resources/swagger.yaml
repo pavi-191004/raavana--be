@@ -1,0 +1,16 @@
+openapi: 3.0.0
+info:
+  title: Recruiter Service API
+  description: API specification for the Recruiter microservice.
+  version: 1.0.0
+paths:
+  /hello:
+    get:
+      summary:  Hello from Recruiter Service
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/plain:
+              schema:
+                type: string
