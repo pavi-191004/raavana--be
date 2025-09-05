@@ -13,7 +13,6 @@
 	</parent>
 
 
-	<groupId>com.raavana</groupId>
 	<artifactId>recruiter-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>recruiter-service</name>

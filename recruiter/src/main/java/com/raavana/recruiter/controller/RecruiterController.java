@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/recruiter")
+@RequestMapping("/api")
 public class RecruiterController implements HelloApi {
 
     @Override
     public ResponseEntity<String> helloGet() {
-        return ResponseEntity.ok("Hello from Recruiter Service!");
+        return ResponseEntity.ok("Hello from Recruiter Service");
     }
 }
