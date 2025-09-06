@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.5.4</version>
+        <version>3.2.1</version>
         <relativePath/>
     </parent>
 
@@ -19,9 +19,12 @@
     <description>Parent project for Raavana microservices</description>
 
     <modules>
-<!--        <module>thirdparty-service</module>-->
-        <!-- <module>discovery-server</module> -->
-        <!-- <module>api-gateway</module> -->
+        <module>thirdparty</module>
+        <module>discovery-server</module>
+        <module>apigateway</module>
+        <module>recruiter</module>
+        <module>student</module>
+         <module>admin</module>
     </modules>
 
     <properties>
@@ -41,23 +44,18 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+                     <!-- Swagger/OpenAPI version control -->
+                    <dependency>
+                        <groupId>org.springdoc</groupId>
+                        <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                        <version>2.5.0</version>
+                    </dependency>
+                 
         </dependencies>
     </dependencyManagement>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>
