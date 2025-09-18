@@ -18,15 +18,7 @@
     <name>Raavana Backend Parent</name>
     <description>Parent project for Raavana microservices</description>
 
-    <modules>
-<!--     <module>thirdparty</module>
-        <module>discovery-server</module>
-        <module>apigateway</module>
-        <module>recruiter</module>
-        <module>student</module>
-         <module>admin</module> -->
-    </modules>
-
+   
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
@@ -44,12 +36,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-                     <!-- Swagger/OpenAPI version control -->
-                    <dependency>
-                        <groupId>org.springdoc</groupId>
-                        <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
-                        <version>2.5.0</version>
-                    </dependency>
                  
         </dependencies>
     </dependencyManagement>
