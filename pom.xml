@@ -18,18 +18,21 @@
     <name>Raavana Backend Parent</name>
     <description>Parent project for Raavana microservices</description>
 
+
     <modules>
-<!--        <module>thirdparty-service</module>-->
+
          <module>discovery-server</module>
          <module>apigateway</module>
         <module>admin</module>
     </modules>
+
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-cloud.version>2023.0.0</spring-cloud.version>
+        <sonar.organization>pavi-191004</sonar.organization>
     </properties>
 
     <dependencyManagement>
@@ -41,23 +44,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+                 
         </dependencies>
     </dependencyManagement>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 </project>
