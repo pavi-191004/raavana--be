@@ -1,4 +1,7 @@
 package com.raavana.admin.repository;
 
-public interface AdminRepository {
+import com.raavana.admin.entity.AdminEntity;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface AdminRepository extends MongoRepository<AdminEntity,String> {
 }
