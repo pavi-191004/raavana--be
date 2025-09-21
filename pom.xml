@@ -24,6 +24,9 @@
          <module>discovery-server</module>
          <module>apigateway</module>
         <module>admin</module>
+        <module>thirdparty</module>
+        <module>student</module>
+        <module>recruiter</module>
     </modules>
 
 
