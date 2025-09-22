@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController implements HiApi{
 
     private  final AdminService adminService;
-
-
         @Override
         public ResponseEntity<String> hiGet() {
             return ResponseEntity.ok("Hello from Admin Service!");
