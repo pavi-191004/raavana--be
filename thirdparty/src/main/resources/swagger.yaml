@@ -1,17 +1,36 @@
 openapi: 3.0.0
 info:
-  title: Third Party Service API
-  description: API specification for the Third Party microservice.
+  title: ThirdParty Information
   version: 1.0.0
+  description: Add ThirdParty Infomation
+
 paths:
-  /hi:
-    get:
-      summary:  Hi from Third Party Service
+  /add:
+    post:
+      summary: add the ThirdParty details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ThirdPartyDTO'
       responses:
-        '201':
-          description: Successful response
+        '200':
+          description: Successfully registered ThirdParty
           content:
-            text/plain:
+            application/json:
               schema:
                 type: string
+
+
+
+components:
+  schemas:
+    ThirdPartyDTO:
+      type: object
+      properties:
+        Name:
+          type: string
+        Age:
+          type: integer
 

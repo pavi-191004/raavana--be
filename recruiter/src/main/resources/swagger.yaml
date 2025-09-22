@@ -1,16 +1,36 @@
 openapi: 3.0.0
 info:
-  title: Recruiter Service API
-  description: API specification for the Recruiter microservice.
+  title: Recruiter Information
   version: 1.0.0
+  description: Add Recruiter Infomation
+
 paths:
-  /hello:
-    get:
-      summary:  Hello from Recruiter Service
+  /add:
+    post:
+      summary: add the Recruiter details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecruiterDTO'
       responses:
         '200':
-          description: Successful response
+          description: Successfully registered Recruiter
           content:
-            text/plain:
+            application/json:
               schema:
                 type: string
+
+
+
+components:
+  schemas:
+    RecruiterDTO:
+      type: object
+      properties:
+        recruiterName:
+          type: string
+        recruiterAge:
+          type: integer
+
