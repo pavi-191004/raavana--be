@@ -1,17 +1,43 @@
 openapi: 3.0.0
-info:
-  title: Third Party Service API
-  description: API specification for the Third Party microservice.
-  version: 1.0.0
-paths:
-  /hi:
-    get:
-      summary:  Hi from Third Party Service
-      responses:
-        '201':
-          description: Successful response
-          content:
-            text/plain:
-              schema:
-                type: string
 
+info:
+
+  title:  Create User API
+
+  version: 1.0.0
+
+  description: Api for triggering WorkOS CreateUser API
+
+paths:
+
+  /api/admin/trigger-credentials:
+
+    post:
+
+      summary: Triggering WorkOS createUser API
+
+      requestBody:
+
+        content:
+
+          application/json:
+
+            schema:
+
+              type: object
+
+              properties:
+
+                email:
+
+                  type: string
+
+      responses:
+
+        '200':
+
+          description: User Created Sucessfuly !
+
+        '503':
+
+          description: Something went wrong ! Error !

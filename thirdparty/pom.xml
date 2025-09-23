@@ -60,6 +60,13 @@
 			<artifactId>hibernate-validator</artifactId>
 		</dependency> <!--upto here is swaager creation dependencies !-->
 
+		<!--	WorkOS	-->
+		<dependency>
+			<groupId>com.workos</groupId>
+			<artifactId>workos</artifactId>
+			<version>4.14.0</version>
+		</dependency>
+
 <!--        spring boot web-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
