@@ -13,6 +13,7 @@
         <module name="recruiter-service" />
         <module name="student-service" />
         <module name="thirdparty-service" />
+        <module name="thirdparty" />
         <module name="admin-service" />
       </profile>
     </annotationProcessing>
@@ -25,6 +26,7 @@
       <module name="discovery-server" options="-parameters" />
       <module name="recruiter-service" options="-parameters" />
       <module name="student-service" options="-parameters" />
+      <module name="thirdparty" options="-parameters" />
       <module name="thirdparty-service" options="-parameters" />
     </option>
   </component>
