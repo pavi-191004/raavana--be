@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class WorkOsService{
-    public ResponseEntity triggerUserApi(String userEmail){
+    public ResponseEntity<Void> triggerUserApi(String userEmail){
 
         WorkOS workos = new WorkOS("sk_test_a2V5XzAxSzU0RTVGMTlDUjJNMFRYUEI5WjU5R1FaLHhFNU9xVW55a0sxaWZZQTdiY3NkVGE2a2s");
         try {
@@ -25,7 +25,7 @@ public class WorkOsService{
 
         } catch (Exception e) {
 
-            e.printStackTrace();
+            System.out.println("Exception : "+e);
 
             //Response with 503 status code
             return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
