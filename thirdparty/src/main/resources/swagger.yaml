@@ -10,7 +10,7 @@ info:
 
 paths:
 
-  /api/admin/trigger-credentials:
+  /admin/trigger-credentials:
 
     post:
 
