@@ -14,3 +14,208 @@ paths:
             text/plain:
               schema:
                 type: string
+  /drives:
+    post:
+      tags:
+        - Drives
+      summary: Create Recruitment Drive
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecruitmentDrivesDTO'
+      responses:
+        '201':
+          description: Recruitment Drive Created successfully
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+
+    get:
+      tags:
+        - Drives
+      summary: Get All Recruitment Drives
+      responses:
+        '200':
+          description: List of Recruitment Drives fetched successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RecruitmentDrivesDTO'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+  /drives/{id}:
+    get:
+      tags:
+        - Drives
+      summary: Get Recruitment Drive by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recruitment Drive details fetched successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecruitmentDrivesDTO'
+        '400':
+          description: Bad Request
+        '404':
+          description: Recruitment Drive not found
+        '500':
+          description: Internal Server Error
+
+    put:
+      tags:
+        - Drives
+      summary: Update Recruitment Drive
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RecruitmentDrivesDTO'
+      responses:
+        '200':
+          description: Recruitment Drive Updated successfully
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+        '404':
+          description: Recruitment Drive not found
+        '500':
+          description: Internal Server Error
+
+    delete:
+      tags:
+        - Drives
+      summary: Delete Recruitment Drive
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recruitment Drive Deleted Successfully
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+        '404':
+          description: Recruitment Drive not found
+        '500':
+          description: Internal Server Error
+
+components:
+  schemas:
+    RecruitmentDrivesDTO:
+      type: object
+      required:
+        - titleOfTheDrive
+        - company
+        - roleOrDesignation
+        - workLocation
+        - jobDescription
+        - date
+        - time
+        - eligibilityCriteria
+      properties:
+        id:
+          type: string
+          example: "1"
+        titleOfTheDrive:
+          type: string
+          example: "Google Software Engineer"
+        company:
+          type: string
+          enum: [Google, Microsoft, Amazon, TCS, JP Morgan]
+        roleOrDesignation:
+          type: string
+          example: "SDE Interns"
+        workLocation:
+          type: string
+          enum: [Remote, Onsite]
+          example: "Remote"
+        jobDescription:
+          type: string
+          example: "Summer internship program for software development engineers with opportunities to work on real-world projects."
+        date:
+          type: string
+          example: "08/30/2024"
+        time:
+          type: string
+          example: "10:30 AM"
+        eligibilityCriteria:
+          type: string
+          example: "CSE, ECE - CGPA > 7.0"
+        venueDetails:
+          type: object
+          properties:
+            venue:
+              type: string
+              example: "Computer Lab Complex"
+            address:
+              type: string
+              example: "Block D, First Floor, IT Department"
+            contact:
+              type: string
+              example: "Lab Coordinator - 9876543250"
+        interviewDetails:
+          type: object
+          properties:
+            interviewType:
+              type: string
+              example: "Technical"
+            duration:
+              type: string
+              example: "1.5 hours"
+            mode:
+              type: string
+              enum: [Virtual, In-person, Hybrid]
+              example: "Virtual"
+        interviewRounds:
+          type: array
+          items:
+            type: object
+            properties:
+              roundName:
+                type: string
+                example: "Technical Interview"
+              roundDescription:
+                type: string
+                example: "Evaluate coding, problem solving, and technical skills."
+        createdAt:
+          type: string
+        createdBy:
+          type: string
+        updatedAt:
+          type: string
+        updatedBy:
+          type: string
