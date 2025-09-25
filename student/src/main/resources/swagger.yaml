@@ -14,3 +14,59 @@ paths:
             text/plain:
               schema:
                 type: string
+
+  /api/students/education-details:
+    post:
+      summary: Add a new student
+      operationId: addStudentEducationDetails
+      tags:
+        - StudentOnboarding
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentDTO'
+      responses:
+        '201':
+          description: Student created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentDTO'
+        '400':
+          description: Invalid input
+        '500':
+          description: Server Error
+components:
+  schemas:
+    StudentDTO:
+      type: object
+      required:
+        - degree
+        - specialization
+        - institution
+        - year
+      properties:
+
+        degree:
+          type: string
+          example: "B.Tech"
+        specialization:
+          type: string
+          example: "Computer Science"
+        institution:
+          type: string
+          example: "SSM Institute of Engineering and Technology"
+        cgpa:
+          type: number
+          format: double
+          minimum: 0
+          maximum: 10
+          example: 8.5
+        year:
+          type: integer
+          example: 2025
+        location:
+          type: string
+          example: "Dindigul, Tamil Nadu"
