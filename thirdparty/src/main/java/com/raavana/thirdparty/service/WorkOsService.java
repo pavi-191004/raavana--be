@@ -19,15 +19,11 @@ public class WorkOsService{
                     new CreateUserOptionsBuilder(userEmail).build());
 
             System.out.println("user created successfully");
-
-            //Response with 204 status code
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
         } catch (Exception e) {
 
             System.out.println("Exception : "+e);
-
-            //Response with 503 status code
             return new ResponseEntity<>(HttpStatus.SERVICE_UNAVAILABLE);
         }
     }
