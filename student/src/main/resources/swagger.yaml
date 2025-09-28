@@ -14,3 +14,99 @@ paths:
             text/plain:
               schema:
                 type: string
+
+  /student:
+    post:
+      tags:
+        - PersonalDetails
+      summary: Add Student Personal Details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentDTO'
+
+      responses:
+        '201':
+          description: Student Personal Details Created
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /student/{id}:
+    put:
+      tags:
+        - PersonalDetails
+      summary: Update Student Personal Details
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentDTO'
+
+      responses:
+        '200':
+          description: Student Personal Details Updated
+          content:
+            application/json:
+              schema:
+                type: string
+
+    delete:
+      tags:
+        - PersonalDetails
+      summary: Delete Student Personal Details
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+
+      responses:
+        '204':
+          description: Student Personal Details Deleted
+          content:
+            application/json:
+              schema:
+                type: string
+
+components:
+  schemas:
+    StudentDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        profileImage:
+          type: string
+        fullName:
+          type: string
+        registerNo:
+          type: string
+        degree:
+          type: string
+        field:
+          type: string
+        mobile:
+          type: string
+        gender:
+          type: string
+        domain:
+          type: string
+        about:
+          type: string
+
+
+
+
