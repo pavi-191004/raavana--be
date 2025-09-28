@@ -14,3 +14,31 @@ paths:
             text/plain:
               schema:
                 type: string
+  /auth/enroll:
+    post:
+      summary: Stores user profile
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UserDTO"
+
+      responses:
+        "201":
+          description: Successfully Registered
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserDTO"
+
+components:
+  schemas:
+    UserDTO:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        type:
+          type: string
