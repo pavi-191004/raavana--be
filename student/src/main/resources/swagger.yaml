@@ -18,18 +18,18 @@ paths:
   /student:
     post:
       tags:
-        - PersonalDetails
-      summary: Add Student Personal Details
+        - Experience Details
+      summary: Add Student Experience Details
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StudentDTO'
+              $ref: '#/components/schemas/StudentExperienceDTO'
 
       responses:
         '201':
-          description: Student Personal Details Created
+          description: Student Experience Details Created
           content:
             application/json:
               schema:
@@ -38,8 +38,8 @@ paths:
   /student/{id}:
     put:
       tags:
-        - PersonalDetails
-      summary: Update Student Personal Details
+        - Experience Details
+      summary: Update Student Experience Details
       parameters:
         - name: id
           required: true
@@ -52,11 +52,11 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/StudentDTO'
+              $ref: '#/components/schemas/StudentExperienceDTO'
 
       responses:
         '200':
-          description: Student Personal Details Updated
+          description: Student Experience Details Updated
           content:
             application/json:
               schema:
@@ -64,8 +64,8 @@ paths:
 
     delete:
       tags:
-        - PersonalDetails
-      summary: Delete Student Personal Details
+        - Experience Details
+      summary: Delete Student Experience Details
       parameters:
         - name: id
           required: true
@@ -75,7 +75,7 @@ paths:
 
       responses:
         '204':
-          description: Student Personal Details Deleted
+          description: Student Experience Details Deleted
           content:
             application/json:
               schema:
@@ -83,30 +83,22 @@ paths:
 
 components:
   schemas:
-    StudentDTO:
+    StudentExperienceDTO:
       type: object
       properties:
         id:
           type: string
-        profileImage:
+        role:
           type: string
-        fullName:
+        companyName:
           type: string
-        registerNo:
+        startDate:
           type: string
-        degree:
+        endDate:
           type: string
-        field:
+        mode:
           type: string
-        mobile:
+        location:
           type: string
-        gender:
+        description:
           type: string
-        domain:
-          type: string
-        about:
-          type: string
-
-
-
-

@@ -12,16 +12,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @NoArgsConstructor
 @Builder
 @Document(collection = "Student")
-public class StudentPersonalEntity {
+public class StudentExperienceEntity {
     @Id
     private String id;
-    private String profileImage;
-    private String fullName;
-    private String registerNo;
-    private String degree;
-    private String field;
-    private String mobile;
-    private String gender;
-    private String domain;
-    private String about;
+    private String role;
+    private String companyName;
+    private String startDate;
+    private String endDate;
+    private String mode;
+    private String location;
+    private String description;
 }
