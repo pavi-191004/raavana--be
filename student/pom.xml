@@ -76,22 +76,19 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
 
 	</dependencies>
 
 	<build>
 		<plugins>
-
-
-
-
 			<plugin>
 				<groupId>io.swagger.codegen.v3</groupId>
 				<artifactId>swagger-codegen-maven-plugin</artifactId>
 				<version>3.0.55</version> <!-- Latest as of 2025 -->
-
-
 				<executions>
 					<execution>
 						<goals>
@@ -116,8 +113,6 @@
 					</execution>
 				</executions>
 			</plugin>
-
-
 		</plugins>
 	</build>
 </project>
