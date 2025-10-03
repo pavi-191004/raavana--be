@@ -14,3 +14,109 @@ paths:
             text/plain:
               schema:
                 type: string
+  /personalinfo:
+    post:
+      tags:
+        - PersonalInfo
+      summary: Create new admin personal info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PersonalInfo'
+      responses:
+        '201':
+          description: Personal info created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PersonalInfo'
+        '400':
+          description: Bad Request
+        '500':
+          description: Server Error
+
+  /organizationinfo:
+    post:
+      tags:
+        - OrganizationInfo
+      summary: Create new organization info
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationInfo'
+      responses:
+        '201':
+          description: Organization info created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrganizationInfo'
+        '400':
+          description: Bad Request
+        '500':
+          description: Server Error
+
+components:
+  schemas:
+    PersonalInfo:
+      type: object
+      properties:
+        fullName:
+          type: string
+          example: "Ben Tennyson"
+        designation:
+          type: string
+          example: "Admin Officer"
+        contactNumber:
+          type: integer
+          format: int64
+          example: 9876543210
+        roleId:
+          type: string
+          enum: [superadmin, admin, placement_officer]
+          example: "admin"
+      required:
+        - fullName
+        - designation
+        - contactNumber
+        - roleId
+
+    OrganizationInfo:
+      type: object
+      properties:
+        organizationId:
+          type: string
+          example: "ORG123"
+        organizationName:
+          type: string
+          example: "SSMIET University"
+        organizationType:
+          type: string
+          enum: [college, university, group_of_institutions]
+          example: "university"
+        location:
+          type: string
+          example: "Dindigul, India"
+        website:
+          type: string
+          format: uri
+          example: "https://ssmiet.edu"
+        subdomain:
+          type: string
+          example: "mentorbridge"
+        departments:
+          type: array
+          items:
+            type: string
+          example: ["Computer Science", "Electronics", "AI&DS"]
+      required:
+        - organizationId
+        - organizationName
+        - organizationType
+        - departments
+        - location
+        - website
