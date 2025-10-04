@@ -39,6 +39,7 @@ public class FileUtils {
                 g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                 g.drawImage(originalImg, 0, 0, newWidth, newHeight, null);
                 g.dispose();
+
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 ImageIO.write(resizedImg, "png", baos);
                 byte[] compressedBytes = baos.toByteArray();
@@ -48,16 +49,14 @@ public class FileUtils {
         // Demo
 //    public static void main(String[] args) {
 //        try {
-//            // 1️⃣ Download image from URL
+//
 //            URL imageUrl = new URL("https://dummyjson.com/image/400x200/008080/ffffff?text=Hello+Peter");
 //            BufferedImage img = ImageIO.read(imageUrl);
 //
-//            // 2️⃣ Convert to Base64
 //            ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //            ImageIO.write(img, "png", baos);
 //            String base64Input = Base64.getEncoder().encodeToString(baos.toByteArray());
 //
-//            // 3️⃣ Compress Base64
 //            String base64Output = compressBase64Image(base64Input);
 //
 //            // Print lengths
