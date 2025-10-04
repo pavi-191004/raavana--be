@@ -3,7 +3,6 @@ package com.raavana.admin.controller;
 import com.raavana.admin.dto.AdminDto;
 import com.raavana.admin.service.AdminService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import com.raavana.admin.api.HiApi;
 import org.springframework.web.bind.annotation.PostMapping;
