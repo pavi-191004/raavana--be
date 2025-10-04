@@ -14,3 +14,59 @@ paths:
             text/plain:
               schema:
                 type: string
+
+  /skill/{id}:
+    put:
+      tags:
+        - StudentOnBoardingAPI
+      summary: Update Skill Set Data
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the student
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SkillDTO'
+      responses:
+        '200':
+          description: Skill set updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SkillDTO'
+        '400':
+          description: Invalid input
+
+components:
+  schemas:
+    SkillDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "102"
+        technicalSkills:
+          type: array
+          items:
+            type: string
+          example: ["Java", "Python", "C", "React", "MySQL", "C++", "HTML", "CSS"]
+        softSkills:
+          type: array
+          items:
+            type: string
+          example: ["Communication", "Leadership", "Time Management", "Adaptability", "Problem Solving"]
+        hobbies:
+          type: array
+          items:
+            type: string
+          example: ["Drawing", "Photography", "Content Writing", "Public Speaking", "Graphic Design"]
+      required:
+        - technicalSkills
+        - softSkills
+        - hobbies
