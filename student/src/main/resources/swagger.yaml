@@ -14,3 +14,91 @@ paths:
             text/plain:
               schema:
                 type: string
+
+  /student:
+    post:
+      tags:
+        - Experience Details
+      summary: Add Student Experience Details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentExperienceDTO'
+
+      responses:
+        '201':
+          description: Student Experience Details Created
+          content:
+            application/json:
+              schema:
+                type: string
+
+  /student/{id}:
+    put:
+      tags:
+        - Experience Details
+      summary: Update Student Experience Details
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentExperienceDTO'
+
+      responses:
+        '200':
+          description: Student Experience Details Updated
+          content:
+            application/json:
+              schema:
+                type: string
+
+    delete:
+      tags:
+        - Experience Details
+      summary: Delete Student Experience Details
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+
+      responses:
+        '204':
+          description: Student Experience Details Deleted
+          content:
+            application/json:
+              schema:
+                type: string
+
+components:
+  schemas:
+    StudentExperienceDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        role:
+          type: string
+        companyName:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        mode:
+          type: string
+        location:
+          type: string
+        description:
+          type: string
