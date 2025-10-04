@@ -47,23 +47,18 @@ public class FileUtils {
     // Demo
 //    public static void main(String[] args) {
 //        try {
-//            // 1️⃣ Download image from URL
 //            URL imageUrl = new URL("https://dummyjson.com/image/400x200/008080/ffffff?text=Hello+Peter");
 //            BufferedImage img = ImageIO.read(imageUrl);
 //
-//            // 2️⃣ Convert to Base64
 //            ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //            ImageIO.write(img, "png", baos);
 //            String base64Input = Base64.getEncoder().encodeToString(baos.toByteArray());
 //
-//            // 3️⃣ Compress Base64
 //            String base64Output = compressBase64Image(base64Input);
 //
-//            // Print lengths
 //            System.out.println("Original Base64 length: " + base64Input.length());
 //            System.out.println("Compressed Base64 length: " + base64Output.length());
 //
-//            // Optional: save compressed image
 //            byte[] outputBytes = Base64.getDecoder().decode(base64Output);
 //            try (FileOutputStream fos = new FileOutputStream("compressed.png")) {
 //                fos.write(outputBytes);
