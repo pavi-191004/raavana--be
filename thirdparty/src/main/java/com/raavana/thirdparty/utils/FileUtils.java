@@ -59,11 +59,9 @@ public class FileUtils {
 //
 //            String base64Output = compressBase64Image(base64Input);
 //
-//            // Print lengths
 //            System.out.println("Original Base64 length: " + base64Input.length());
 //            System.out.println("Compressed Base64 length: " + base64Output.length());
 //
-//            // Optional: save compressed image
 //            byte[] outputBytes = Base64.getDecoder().decode(base64Output);
 //            try (FileOutputStream fos = new FileOutputStream("compressed.png")) {
 //                fos.write(outputBytes);
