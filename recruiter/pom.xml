@@ -83,7 +83,14 @@
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
-		</dependency> <!--upto here is swaager creation dependencies !-->
+		</dependency>
+		<!--upto here is swaager creation dependencies !-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>

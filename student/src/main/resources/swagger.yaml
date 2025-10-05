@@ -1,16 +1,36 @@
 openapi: 3.0.0
 info:
-  title: Student Service API
-  description: API specification for the Student microservice.
+  title: Student Information
   version: 1.0.0
+  description: Add Student Infomation
+
 paths:
-  /test:
-    get:
-      summary:  test from Student Service
+  /add:
+    post:
+      summary: add the Student details
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentDTO'
       responses:
         '200':
-          description: Successful response
+          description: Successfully registered Student
           content:
-            text/plain:
+            application/json:
               schema:
                 type: string
+
+
+
+components:
+  schemas:
+    StudentDTO:
+      type: object
+      properties:
+        studentName:
+          type: string
+        studentAge:
+          type: integer
+

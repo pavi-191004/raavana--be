@@ -1,4 +1,7 @@
 package com.raavana.recruiter.repository;
 
-public interface RecruiterRepository {
+import com.raavana.recruiter.entities.RecruiterEntities;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface RecruiterRepository extends MongoRepository<RecruiterEntities,String> {
 }
