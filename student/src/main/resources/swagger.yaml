@@ -14,3 +14,146 @@ paths:
             text/plain:
               schema:
                 type: string
+
+  /students/{id}:
+    get:
+      tags:
+        - GetStudent
+      summary: Get Student
+      description: Fetch student profile by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Fetching student profile by id
+      responses:
+        "200":
+          description: Student profile retrieved
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StudentProfileDTO"
+
+  /students:
+    get:
+      tags:
+        - GetStudent
+      summary: Get All Student Profiles
+      description: Fetch list of all student profiles
+      responses:
+        "200":
+          description: List of student profiles retrieved
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/StudentProfileDTO"
+
+components:
+  schemas:
+    StudentProfileDTO:
+      type: object
+      properties:
+        personalInfo:
+          type: object
+          properties:
+            id:
+              type: string
+            studentImage:
+              type: string
+            fullName:
+              type: string
+            registerNo:
+              type: string
+            degree:
+              type: string
+            fieldOfStudy:
+              type: string
+            phone:
+              type: string
+            gender:
+              type: string
+            domain:
+              type: string
+            about:
+              type: string
+        education:
+          type: array
+          items:
+            type: object
+            properties:
+              degree:
+                type: string
+              specialization:
+                type: string
+              institution:
+                type: string
+              cgpa:
+                type: string
+              year:
+                type: integer
+              location:
+                type: string
+        skills:
+          type: array
+          items:
+            type: object
+            properties:
+              technicalSkills:
+                type: string
+              softSkills:
+                type: string
+              hobbies:
+                type: string
+        experiences:
+          type: array
+          items:
+            type: object
+            properties:
+              role:
+                type: string
+              companyName:
+                type: string
+              startDate:
+                type: string
+              endDate:
+                type: string
+              mode:
+                type: string
+              location:
+                type: string
+              description:
+                type: string
+        projects:
+          type: array
+          items:
+            type: object
+            properties:
+              projectName:
+                type: string
+              description:
+                type: string
+              technologiesOrToolsUsed:
+                type: string
+              startDate:
+                type: string
+              endDate:
+                type: string
+        achievements:
+          type: array
+          items:
+            type: object
+            properties:
+              certification/Award:
+                type: string
+              awardedBy:
+                type: string
+              description:
+                type: string
+              date:
+                type: string
+              uploadedCertificate:
+                type: string
