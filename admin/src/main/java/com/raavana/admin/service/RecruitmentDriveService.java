@@ -24,7 +24,7 @@ public class RecruitmentDriveService {
 
     private final RecruitmentDriveRepository recruitmentDriveRepository;
 
-    // CREATE
+    // CREATE New RecruitmentDrive
     public ResponseEntity<String> createRecruitmentDrive(RecruitmentDrivesDTO dto) {
         try {
             boolean exists = recruitmentDriveRepository
