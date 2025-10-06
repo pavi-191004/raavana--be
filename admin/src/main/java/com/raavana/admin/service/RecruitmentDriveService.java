@@ -4,13 +4,19 @@ import com.raavana.admin.entity.RecruitmentDriveEntity;
 import com.raavana.admin.model.RecruitmentDrivesDTO;
 import com.raavana.admin.repository.RecruitmentDriveRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
-
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -19,35 +25,25 @@ public class RecruitmentDriveService {
     private final RecruitmentDriveRepository recruitmentDriveRepository;
 
     // CREATE
-    public ResponseEntity<String> recruitmentDrivesPost(RecruitmentDrivesDTO dto) {
+    public ResponseEntity<String> createRecruitmentDrive(RecruitmentDrivesDTO dto) {
         try {
-            if (dto.getTitleOfTheDrive() == null || dto.getCompany() == null
-                    || dto.getRoleOrDesignation() == null || dto.getWorkLocation() == null
-                    || dto.getJobDescription() == null || dto.getDate() == null
-                    || dto.getTime() == null || dto.getEligibilityCriteria() == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input data or Missing required fields");
-            }
-
             boolean exists = recruitmentDriveRepository
                     .findByTitleOfTheDriveAndCompany(dto.getTitleOfTheDrive(), dto.getCompany())
                     .isPresent();
             if (exists) {
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("Recruitment Drive already exists");
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Recruitment Drive already exists!");
             }
-
-            RecruitmentDriveEntity entity = toEntity(dto);
+            RecruitmentDriveEntity entity = new RecruitmentDriveEntity();
+            updateEntityFromDto(entity, dto);
             recruitmentDriveRepository.save(entity);
-
-            return ResponseEntity.status(HttpStatus.CREATED).body("Recruitment Drive Created successfully");
-
+            return ResponseEntity.status(HttpStatus.CREATED).body("Recruitment Drive Created successfully!");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Creation Failed");
         }
     }
 
-
     // GET ALL
-    public ResponseEntity<List<RecruitmentDrivesDTO>> recruitmentDrivesGet() {
+    public ResponseEntity<List<RecruitmentDrivesDTO>> getAllRecruitmentDrives() {
         try {
             List<RecruitmentDriveEntity> entities = recruitmentDriveRepository.findAll();
             List<RecruitmentDrivesDTO> dtos = new ArrayList<>();
@@ -61,56 +57,23 @@ public class RecruitmentDriveService {
     }
 
     // GET BY ID
-    public ResponseEntity<RecruitmentDrivesDTO> recruitmentDrivesIdGet(String id) {
-        if (id == null || id.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid ID");
-        }
-
+    public ResponseEntity<RecruitmentDrivesDTO> getRecruitmentDriveById(String id) {
         RecruitmentDriveEntity entity = recruitmentDriveRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(
                         HttpStatus.NOT_FOUND, "Recruitment Drive not found with id: " + id));
-
         return ResponseEntity.ok(toDTO(entity));
     }
 
-
     // UPDATE
-    public ResponseEntity<String> recruitmentDrivesIdPut(String id, RecruitmentDrivesDTO dto) {
-        // Check for null ID
-        if (id == null || id.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid ID");
-        }
-
-        if (dto.getTitleOfTheDrive() == null || dto.getTitleOfTheDrive().isEmpty() ||
-                dto.getCompany() == null ||
-                dto.getRoleOrDesignation() == null || dto.getRoleOrDesignation().isEmpty() ||
-                dto.getWorkLocation() == null ||
-                dto.getJobDescription() == null || dto.getJobDescription().isEmpty() ||
-                dto.getDate() == null || dto.getTime() == null ||
-                dto.getEligibilityCriteria() == null || dto.getEligibilityCriteria().isEmpty()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Missing required fields");
-        }
-
+    public ResponseEntity<String> updateRecruitmentDrive(String id, RecruitmentDrivesDTO dto) {
         try {
             RecruitmentDriveEntity entity = recruitmentDriveRepository.findById(id)
                     .orElseThrow(() -> new ResponseStatusException(
                             HttpStatus.NOT_FOUND, "Recruitment Drive not found with id: " + id));
 
-            entity.setTitleOfTheDrive(dto.getTitleOfTheDrive());
-            entity.setCompany(dto.getCompany());
-            entity.setRoleOrDesignation(dto.getRoleOrDesignation());
-            entity.setWorkLocation(dto.getWorkLocation());
-            entity.setJobDescription(dto.getJobDescription());
-            entity.setDate(dto.getDate());
-            entity.setTime(dto.getTime());
-            entity.setEligibilityCriteria(dto.getEligibilityCriteria());
-            entity.setVenueDetails(dto.getVenueDetails());
-            entity.setInterviewDetails(dto.getInterviewDetails());
-            entity.setInterviewRounds(dto.getInterviewRounds());
-
+            updateEntityFromDto(entity, dto);
             recruitmentDriveRepository.save(entity);
-            return ResponseEntity.ok("Recruitment Drive Updated successfully");
-
+            return ResponseEntity.ok("Recruitment Drive Updated successfully!");
         } catch (ResponseStatusException e) {
             return ResponseEntity.status(e.getStatusCode()).body(e.getReason());
         } catch (Exception e) {
@@ -119,51 +82,77 @@ public class RecruitmentDriveService {
     }
 
     // DELETE
-    public ResponseEntity<String> recruitmentDrivesIdDelete(String id) {
+    public ResponseEntity<String> deleteRecruitmentDrive(String id) {
+        return recruitmentDriveRepository.findById(id)
+                .map(entity -> {
+                    recruitmentDriveRepository.delete(entity);
+                    return ResponseEntity.ok("Recruitment Drive Deleted Successfully!");
+                })
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body("Recruitment Drive not found with id: " + id));
+    }
+
+    // Get All Registered Companies as Dropdown via Company Service
+    public List<String> getAllCompanies() {
         try {
-            if (id == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            RestTemplate restTemplate = new RestTemplate();
+            String companyApi = ""; // TODO: Replace With CompanyAPI after backend deployed
 
-            RecruitmentDriveEntity entity = recruitmentDriveRepository.findById(id)
-                    .orElseThrow(() -> new ResponseStatusException(
-                            HttpStatus.NOT_FOUND, "Recruitment Drive not found with id: " + id));
+            ResponseEntity<List<Map<String, Object>>> response = restTemplate.exchange(
+                    companyApi,
+                    HttpMethod.GET,
+                    null,
+                    new ParameterizedTypeReference<List<Map<String, Object>>>() {}
+            );
+            if (response.getBody() == null) return new ArrayList<>();
+            List<String> companyNames = new ArrayList<>();
+            response.getBody().forEach(company -> {
+                Object name = company.get("companyName");
+                if (name != null) companyNames.add(name.toString());
+            });
 
-            recruitmentDriveRepository.delete(entity);
-            return ResponseEntity.noContent().build(); // 204
+            return companyNames;
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+            return new ArrayList<>();
         }
     }
 
-    // --- Mapper Methods ---
-    private RecruitmentDriveEntity toEntity(RecruitmentDrivesDTO dto) {
-        RecruitmentDriveEntity entity = new RecruitmentDriveEntity();
+    // Mapper Methods
+    private void updateEntityFromDto(RecruitmentDriveEntity entity, RecruitmentDrivesDTO dto) {
         entity.setTitleOfTheDrive(dto.getTitleOfTheDrive());
         entity.setCompany(dto.getCompany());
         entity.setRoleOrDesignation(dto.getRoleOrDesignation());
         entity.setWorkLocation(dto.getWorkLocation());
         entity.setJobDescription(dto.getJobDescription());
-        entity.setDate(dto.getDate());
-        entity.setTime(dto.getTime());
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
+
+        entity.setDate(LocalDate.parse(dto.getDate(), dateFormatter));
+        entity.setTime(LocalTime.parse(dto.getTime(), timeFormatter));
+
         entity.setEligibilityCriteria(dto.getEligibilityCriteria());
         entity.setVenueDetails(dto.getVenueDetails());
         entity.setInterviewDetails(dto.getInterviewDetails());
         entity.setInterviewRounds(dto.getInterviewRounds());
-        return entity;
+        entity.setStatus(dto.getStatus());
     }
 
     private RecruitmentDrivesDTO toDTO(RecruitmentDriveEntity entity) {
         RecruitmentDrivesDTO dto = new RecruitmentDrivesDTO();
+        dto.setId(entity.getId());
         dto.setTitleOfTheDrive(entity.getTitleOfTheDrive());
         dto.setCompany(entity.getCompany());
         dto.setRoleOrDesignation(entity.getRoleOrDesignation());
         dto.setWorkLocation(entity.getWorkLocation());
         dto.setJobDescription(entity.getJobDescription());
-        dto.setDate(entity.getDate());
-        dto.setTime(entity.getTime());
+        dto.setDate(entity.getDate().toString());
+        dto.setTime(entity.getTime().toString());
         dto.setEligibilityCriteria(entity.getEligibilityCriteria());
         dto.setVenueDetails(entity.getVenueDetails());
         dto.setInterviewDetails(entity.getInterviewDetails());
         dto.setInterviewRounds(entity.getInterviewRounds());
+        dto.setStatus(entity.getStatus());
         return dto;
     }
 }
