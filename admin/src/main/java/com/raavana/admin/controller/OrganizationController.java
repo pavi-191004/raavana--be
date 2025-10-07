@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/organization")
+@RequestMapping("/admin-onboarding/organization-info")
 public class OrganizationController implements OrganizationinfoApi {
 
     private final OrganizationService organizationService;

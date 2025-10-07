@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/personal")
+@RequestMapping("/admin-onboarding/personal-info")
 @RequiredArgsConstructor
 public class PersonalController implements PersonalinfoApi {
 
