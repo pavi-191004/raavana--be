@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class AdminController implements HiApi{
+public class AdminController implements HiApi {
 
     private  final AdminService adminService;
 
