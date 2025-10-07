@@ -18,7 +18,7 @@ public class CompanyService {
 
     private final CompanyRepository companyRepository;
 
-    public ResponseEntity<CompanyDTO> companyPost(CompanyDTO companyDTO) {
+    public ResponseEntity<CompanyDTO> add(CompanyDTO companyDTO) {
         try {
 
             // 400 Bad Request if any required field is missing
@@ -69,7 +69,7 @@ public class CompanyService {
         }
     }
 
-    public ResponseEntity<CompanyDTO> companyIdGet(String id) {
+    public ResponseEntity<CompanyDTO> getById(String id) {
 
         try {
 
@@ -107,7 +107,7 @@ public class CompanyService {
 
     }
 
-    public ResponseEntity<CompanyDTO> companyIdPut(String id, CompanyDTO companyDTO) {
+    public ResponseEntity<CompanyDTO> update(String id, CompanyDTO companyDTO) {
 
         try {
 
@@ -159,7 +159,7 @@ public class CompanyService {
     }
 
 
-    public  ResponseEntity<String> companyIdDelete(String id){
+    public  ResponseEntity<String> delete(String id){
 
         try {
 
@@ -183,7 +183,7 @@ public class CompanyService {
     }
 
 
-    public ResponseEntity<List<CompanyDTO>> companyGet() {
+    public ResponseEntity<List<CompanyDTO>> getAll() {
         try {
             // Fetch all companies
             List<CompanyEntity> entities = companyRepository.findAll();

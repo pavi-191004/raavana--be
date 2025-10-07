@@ -19,27 +19,28 @@ public class CompanyController implements CompanyApi{
 
 
     @Override
-    public ResponseEntity<String> companyIdDelete(String id) {
-        return companyService.companyIdDelete(id);
-    }
-    @Override
-    public ResponseEntity<List<CompanyDTO>> companyGet() {
-        return companyService.companyGet();
+    public ResponseEntity<CompanyDTO> add(CompanyDTO body) {
+        return companyService.add(body);
     }
 
     @Override
-    public ResponseEntity<CompanyDTO> companyIdGet(String id) {
-        return companyService.companyIdGet(id);
+    public ResponseEntity<String> delete(String id) {
+        return companyService.delete(id);
     }
 
     @Override
-    public ResponseEntity<CompanyDTO> companyIdPut(String id, CompanyDTO body) {
-        return companyService.companyIdPut(id,body);
+    public ResponseEntity<List<CompanyDTO>> getAll() {
+        return companyService.getAll();
     }
 
     @Override
-    public ResponseEntity<CompanyDTO> companyPost(CompanyDTO body) {
-        return companyService.companyPost(body);
+    public ResponseEntity<CompanyDTO> getById(String id) {
+        return companyService.getById(id);
+    }
+
+    @Override
+    public ResponseEntity<CompanyDTO> update(String id, CompanyDTO body) {
+        return companyService.update(id,body);
     }
 }
 
