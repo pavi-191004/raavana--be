@@ -21,15 +21,6 @@ public class CompanyService {
     public ResponseEntity<CompanyDTO> add(CompanyDTO companyDTO) {
         try {
 
-            // 400 Bad Request if any required field is missing
-            if (companyDTO.getCompanyName() == null || companyDTO.getCompanyName().isEmpty() ||
-                    companyDTO.getIndustry() == null || companyDTO.getIndustry().isEmpty() ||
-                    companyDTO.getLocation() == null || companyDTO.getLocation(). isEmpty() ||
-                    companyDTO.getWebsite() == null || companyDTO.getWebsite().isEmpty()) {
-
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
-
             // Build entity from DTO  fields
             CompanyEntity companyEntities = CompanyEntity.builder()
                     .companyName(companyDTO.getCompanyName())
@@ -73,10 +64,6 @@ public class CompanyService {
 
         try {
 
-            // 400 Bad Request
-            if (id == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
 
             // 404 Not Found
             CompanyEntity companyEntities = companyRepository.findById(id)
@@ -111,10 +98,6 @@ public class CompanyService {
 
         try {
 
-            // 400 Bad Request
-            if (id == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
 
             //404 Not Found
             CompanyEntity companyEntities = companyRepository.findById(id)
@@ -163,11 +146,6 @@ public class CompanyService {
 
         try {
 
-            // 400 Bad Request
-            if (id == null) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
-
             //404 Not Found
             CompanyEntity companyEntities = companyRepository.findById(id)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"company not found"));
@@ -188,10 +166,6 @@ public class CompanyService {
             // Fetch all companies
             List<CompanyEntity> entities = companyRepository.findAll();
 
-            // If no companies found, you can still return 200 with empty list
-            if (entities.isEmpty()) {
-                return ResponseEntity.ok(new ArrayList<>()); // 200 OK with empty list
-            }
 
             // Map entities to DTOs
             List<CompanyDTO> dtos = new ArrayList<>();

@@ -161,34 +161,65 @@ components:
         id:
           type: string
           example: "1"
+
         companyName:
           type: string
+          minLength: 2
+          maxLength: 100
+          pattern: "^[A-Za-z0-9 .,&'-]+$"
+          x-pattern-message: "Company name can only contain letters, numbers, spaces, and basic punctuation."
           example: "Microsoft"
+
         location:
           type: string
+          minLength: 3
+          maxLength: 150
+          pattern: "^[A-Za-z0-9 ,.-]+$"
+          x-pattern-message: "Location should only contain letters, numbers, commas, periods, and hyphens."
           example: "Hyderabad, India"
+
         industry:
           type: string
+          minLength: 2
+          maxLength: 100
+          pattern: "^[A-Za-z ]+$"
+          x-pattern-message: "Industry must only contain alphabetic characters and spaces."
           example: "Software"
+
         website:
           type: string
-          format: uri
+          pattern: "^(https?:\\/\\/)([\\w.-]+)\\.([a-zA-Z]{2,})([\\/\\w\\.-]*)*$"
+          x-pattern-message: "Website must be a valid URL starting with http or https."
           example: "https://microsoft.com"
+
+
         specialities:
           type: string
+          minLength: 3
+          maxLength: 200
+          pattern: "^[A-Za-z0-9 ,.-]+$"
+          x-pattern-message: "Specialities can include words, numbers, commas, and periods."
           example: "Cloud, AI, Productivity, Tools"
+
         description:
           type: string
+          minLength: 10
+          maxLength: 500
+          x-pattern-message: "Description must be between 10 and 500 characters."
           example: "Leading technology company specializing in software and cloud solutions."
+
         createdAt:
           type: string
           example: "2025-09-18T00:00:00Z"
+
         createdBy:
           type: string
           example: "admin_user"
+
         updatedAt:
           type: string
           example: "2025-09-19T00:00:00Z"
+
         updatedBy:
           type: string
           example: "editor_user"
