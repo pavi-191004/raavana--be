@@ -98,12 +98,11 @@ public class FileUtils {
 //                        byte[] outputBytes = Base64.getDecoder().decode(base64Output);
 //                        try (FileOutputStream fos = new FileOutputStream("compressed.jpg")) {
 //                                fos.write(outputBytes);
-//                        }
+//                      }
+//                         System.out.println("Compressed image saved as compressed.jpg");
 //
-//                        System.out.println("Compressed image saved as compressed.jpg ");
-//
-//                } catch (Exception e) {
-//                        e.printStackTrace();
-//                }
-//        }
+//                         } catch (Exception e) {
+//                              e.printStackTrace();
+//                           }
+//            }
 }
