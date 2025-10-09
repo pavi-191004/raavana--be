@@ -7,6 +7,7 @@ import com.raavana.admin.model.RecruiterDTO;
 import com.raavana.admin.service.RecruiterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,34 +16,34 @@ import java.util.List;
 @RestController
 @RequestMapping("/recruiter")
 @RequiredArgsConstructor
+@Validated
 public class RecruiterController implements RecruiterApi {
 
     private  final RecruiterService recruiterService;
 
-
     @Override
-    public ResponseEntity<List<RecruiterDTO>> recruiterGet() {
-
-        return recruiterService.recruiterGet();
+    public ResponseEntity<RecruiterDTO> add(RecruiterDTO body) {
+        return recruiterService.add(body);
     }
 
     @Override
-    public ResponseEntity<String> recruiterIdDelete(String id) {
-        return recruiterService.recruiterIdDelete(id);
+    public ResponseEntity<String> deleteById(String id) {
+        return recruiterService.deleteById(id);
     }
 
     @Override
-    public ResponseEntity<RecruiterDTO> recruiterIdGet(String id) {
-        return recruiterService.recruiterIdGet(id);
+    public ResponseEntity<List<RecruiterDTO>> getAll() {
+        return recruiterService.getAll();
     }
 
     @Override
-    public ResponseEntity<RecruiterDTO> recruiterIdPut(String id, RecruiterDTO body) {
-        return recruiterService.recruiterIdPut(id,body);
+    public ResponseEntity<RecruiterDTO> getById(String id) {
+        return recruiterService.getById(id);
     }
 
     @Override
-    public ResponseEntity<RecruiterDTO> recruiterPost(RecruiterDTO body) {
-        return recruiterService.recruiterPost(body);
+    public ResponseEntity<RecruiterDTO> updateById(String id, RecruiterDTO body) {
+        return recruiterService.updateById(id,body);
     }
+
 }

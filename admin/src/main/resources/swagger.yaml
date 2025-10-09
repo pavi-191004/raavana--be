@@ -19,6 +19,7 @@ paths:
       tags:
         - Recruiter
       summary: Get all recruiters
+      operationId: getAll
       responses:
         '200':
           description: List of recruiters
@@ -37,6 +38,7 @@ paths:
       tags:
         - Recruiter
       summary: Add a new recruiter
+      operationId: add
       requestBody:
         required: true
         content:
@@ -60,6 +62,7 @@ paths:
       tags:
         - Recruiter
       summary: Get recruiter by ID
+      operationId: getById
       parameters:
         - name: id
           in: path
@@ -84,6 +87,7 @@ paths:
       tags:
         - Recruiter
       summary: Update recruiter by ID
+      operationId: updateById
       parameters:
         - name: id
           in: path
@@ -114,6 +118,7 @@ paths:
       tags:
         - Recruiter
       summary: Delete recruiter by ID
+      operationId: deleteById
       parameters:
         - name: id
           in: path

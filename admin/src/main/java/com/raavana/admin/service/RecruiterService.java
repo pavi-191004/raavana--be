@@ -19,18 +19,8 @@ public class RecruiterService {
 
     private final RecruiterRepository recruiterRepository;
 
-    public ResponseEntity<RecruiterDTO> recruiterPost(RecruiterDTO recruiterDTO) {
+    public ResponseEntity<RecruiterDTO> add(RecruiterDTO recruiterDTO) {
         try {
-
-            if (recruiterDTO.getName() == null || recruiterDTO.getName().isEmpty() ||
-                    recruiterDTO.getDesignation() == null || recruiterDTO.getDesignation().isEmpty() ||
-                    recruiterDTO.getEmail() == null || recruiterDTO.getEmail().isEmpty() ||
-                    recruiterDTO.getPhoneNumber() == null || recruiterDTO.getPhoneNumber().isEmpty() ||
-                    recruiterDTO.getLocation() == null || recruiterDTO.getLocation().isEmpty() ||
-                    recruiterDTO.getCompany() == null || recruiterDTO.getCompany().isEmpty()) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-            }
-
             RecruiterEntity recruiterEntities = RecruiterEntity.builder()
                     .id(recruiterDTO.getId())
                     .name(recruiterDTO.getName())
@@ -73,9 +63,8 @@ public class RecruiterService {
         }
     }
 
-    public ResponseEntity<RecruiterDTO> recruiterIdGet(String id) {
+    public ResponseEntity<RecruiterDTO> getById(String id) {
         try {
-            if (id == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 
             RecruiterEntity recruiterEntities = recruiterRepository.findById(id)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Recruiter not found with id: " + id));
@@ -103,9 +92,8 @@ public class RecruiterService {
         }
     }
 
-    public ResponseEntity<RecruiterDTO> recruiterIdPut(String id, RecruiterDTO recruiterDTO) {
+    public ResponseEntity<RecruiterDTO> updateById(String id, RecruiterDTO recruiterDTO) {
         try {
-            if (id == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
 
             RecruiterEntity recruiterEntities = recruiterRepository.findById(id)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Recruiter not found with id: " + id));
@@ -149,9 +137,8 @@ public class RecruiterService {
         }
     }
 
-    public ResponseEntity<String> recruiterIdDelete(String id) {
+    public ResponseEntity<String> deleteById(String id) {
         try {
-            if (id == null) return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 
             RecruiterEntity recruiterEntities = recruiterRepository.findById(id)
                     .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Recruiter not found with id: " + id));
@@ -166,7 +153,7 @@ public class RecruiterService {
         }
     }
 
-    public ResponseEntity<List<RecruiterDTO>> recruiterGet() {
+    public ResponseEntity<List<RecruiterDTO>> getAll() {
         try {
             List<RecruiterEntity> recruiterEntities = recruiterRepository.findAll();
             List<RecruiterDTO> dtos = new ArrayList<>();
