@@ -154,37 +154,79 @@ components:
         id:
           type: string
           example: "101"
+
         name:
           type: string
-          example: "Kavishree"
+          example: "Kavishree . S"
+          description: "Only alphabets, spaces, and dots allowed"
+          pattern: '^[A-Za-z. ]+$'
+          minLength: 2
+          maxLength: 50
+          x-pattern-message: "Name must contain only alphabets, spaces, and dots (2–50 characters)"
+
         designation:
           type: string
           example: "Senior Technical Recruiter"
+          description: "Should contain alphabets and spaces only"
+          pattern: '^[A-Za-z ]+$'
+          minLength: 2
+          maxLength: 50
+          x-pattern-message: "Designation must contain only alphabets and spaces, 2-50 characters"
+
         email:
           type: string
           format: email
           example: "primary@company.com"
+          description: "Valid email format"
+          pattern: '^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$'
+          x-pattern-message: "Email must be in a valid format, e.g., primary@company.com"
+
         secondaryEmail:
           type: string
           format: email
-          nullable: true
           example: "secondary@company.com"
+          pattern: '^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$'
+          x-pattern-message: "Secondary email must be in a valid format"
+
         phoneNumber:
           type: string
           example: "+91 9876543210"
+          description: "Valid Indian mobile number (10 digits, +91 optional)"
+          pattern: '^(\+91\s?)?[6-9][0-9]{9}$'
+          x-pattern-message: "Phone number must be a valid 10-digit Indian number, with optional +91"
+
         mobileNumber:
           type: string
-          nullable: true
-          example: "+91 8765432109"
+          example: "9876543210"
+          description: "Valid Indian mobile number (10 digits, +91 optional)"
+          pattern: '^(\+91\s?)?[6-9][0-9]{9}$'
+          x-pattern-message: "Mobile number must be a valid 10-digit Indian number, with optional +91"
+
+
         location:
           type: string
           example: "Chennai, Tamil Nadu"
+          description: "Letters, commas and spaces only"
+          pattern: '^[A-Za-z, ]+$'
+          minLength: 2
+          maxLength: 100
+          x-pattern-message: "Location must contain only letters, commas, and spaces, 2-100 characters"
+
         company:
           type: string
           example: "Mentor Bridge"
+          description: "Letters, numbers, and spaces allowed"
+          pattern: '^[A-Za-z0-9 ]+$'
+          minLength: 2
+          maxLength: 100
+          x-pattern-message: "Company must contain letters, numbers, and spaces, 2-100 characters"
+
         description:
           type: string
           example: "Recruiter with 10 years of experience in IT hiring."
+          maxLength: 500
+          x-pattern-message: "Description cannot exceed 500 characters"
+
         createdAt:
           type: string
         createdBy:
@@ -193,3 +235,4 @@ components:
           type: string
         updatedBy:
           type: string
+
