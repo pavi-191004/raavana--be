@@ -1,8 +1,9 @@
 openapi: 3.0.0
 info:
-  title: Admin Service API
-  description: API specification for the Admin microservice.
+  title: Admin API
   version: 1.0.0
+  description: API for managing admin portal
+
 paths:
   /hi:
     get:
@@ -14,3 +15,213 @@ paths:
             text/plain:
               schema:
                 type: string
+
+
+  /company:
+    get:
+      tags:
+        - Company
+      summary: Get all companies
+      operationId: getAll
+      responses:
+        '200':
+          description: List of companies
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CompanyDTO'
+        '400':
+          description: Bad Request
+        '500':
+          description: Server Error
+
+    post:
+      tags:
+        - Company
+      summary: Add a new company
+      operationId: add
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyDTO'
+      responses:
+        '201':
+          description: Company created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDTO'
+        '400':
+          description: Bad Request
+        '500':
+          description: Server Error
+
+  /company/{id}:
+    get:
+      tags:
+        - Company
+      summary: Get company by ID
+      operationId: getById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Company details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyDTO'
+        '400':
+          description: Bad Request
+        '404':
+          description: Company not found
+        '500':
+          description: Server Error
+
+    put:
+      tags:
+        - Company
+      summary: Update company details by ID
+      operationId: update
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyDTO'
+      responses:
+        '200':
+          description: Company updated
+          content:
+            application/json:
+              schema:
+
+                $ref: '#/components/schemas/CompanyDTO'
+        '400':
+          description: Bad Request
+        '404':
+          description: Company not found
+        '500':
+          description: Server Error
+
+    delete:
+      tags:
+        - Company
+      summary: Delete company by ID
+      operationId: delete
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Company deleted
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+        '404':
+          description: Company not found
+        '500':
+          description: Server Error
+          content:
+            application/json:
+              schema:
+                type: string
+
+
+components:
+  schemas:
+    CompanyDTO:
+      type: object
+      required:
+        - companyName
+        - location
+        - industry
+        - website
+      properties:
+        id:
+          type: string
+          example: "1"
+
+        companyName:
+          type: string
+          minLength: 2
+          maxLength: 100
+          pattern: "^[A-Za-z0-9 .,&'-]{2,100}$"
+          x-pattern-message: "Company name can only contain letters, numbers, spaces, and basic punctuation (. , & ' -)."
+          example: "L.G.B brothers ltd"
+
+        location:
+          type: string
+          minLength: 3
+          maxLength: 150
+          pattern: "^[A-Za-z0-9 .,-]{3,150}$"
+          x-pattern-message: "Location should only contain letters, numbers, commas, periods, and hyphens."
+          example: "Hyderabad, India"
+
+        industry:
+          type: string
+          minLength: 2
+          maxLength: 100
+          pattern: "^[A-Za-z ]{2,100}$"
+          x-pattern-message: "Industry must only contain alphabetic characters and spaces."
+          example: "Software"
+
+        website:
+          type: string
+          pattern: "^(https?:\\/\\/)([\\w.-]+)\\.([a-zA-Z]{2,})([\\/\\w\\.-]*)*$"
+          x-pattern-message: "Website must be a valid URL starting with http or https."
+          example: "https://microsoft.com"
+
+        specialities:
+          type: string
+          minLength: 3
+          maxLength: 200
+          pattern: "^[A-Za-z0-9 ,.-]{3,200}$"
+          x-pattern-message: "Specialities can include words, numbers, commas, periods, and hyphens."
+          example: "Cloud, AI, Productivity, Tools"
+
+        description:
+          type: string
+          minLength: 10
+          maxLength: 500
+          x-pattern-message: "Description must be between 10 and 500 characters."
+          example: "Leading technology company specializing in software and cloud solutions."
+
+        createdAt:
+          type: string
+          format: date-time
+          example: "2025-09-18T00:00:00Z"
+
+        createdBy:
+          type: string
+          example: "admin_user"
+
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2025-09-19T00:00:00Z"
+
+        updatedBy:
+          type: string
+          example: "editor_user"
+

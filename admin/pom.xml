@@ -30,6 +30,11 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.2.4</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -72,6 +77,22 @@
 			<version>2.5.0</version>
 		</dependency>
 		<dependency>
+			<groupId>org.openapitools</groupId>
+			<artifactId>jackson-databind-nullable</artifactId>
+			<version>0.2.6</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.threeten</groupId>
+			<artifactId>threetenbp</artifactId>
+			<version>1.6.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+			<version>3.2.4</version>
+		</dependency>
+		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency> <!--upto here is swaager creation dependencies !-->
@@ -87,14 +108,10 @@
 
 	<build>
 		<plugins>
-
-
 			<plugin>
-				<groupId>io.swagger.codegen.v3</groupId>
-				<artifactId>swagger-codegen-maven-plugin</artifactId>
-				<version>3.0.55</version> <!-- Latest as of 2025 -->
-
-
+				<groupId>org.openapitools</groupId>
+				<artifactId>openapi-generator-maven-plugin</artifactId>
+				<version>7.10.0</version>
 				<executions>
 					<execution>
 						<goals>
@@ -102,23 +119,25 @@
 						</goals>
 						<configuration>
 							<inputSpec>${project.basedir}/src/main/resources/swagger.yaml</inputSpec>
-							<language>spring</language> <!-- Generates Spring-compatible code -->
-							<generateApis>true</generateApis> <!-- Skip API interfaces -->
-							<generateApiTests>false</generateApiTests>
-							<generateModelTests>false</generateModelTests>
-							<generateSupportingFiles>false</generateSupportingFiles>
-							<apiPackage>com.raavana.admin.api</apiPackage> <!-- Adjust to your package -->
-							<modelPackage>com.raavana.admin.model</modelPackage> <!-- Adjust to your package -->
-							<language>spring</language>
+							<generatorName>spring</generatorName>
+							<apiPackage>com.raavana.admin.api</apiPackage>
+							<modelPackage>com.raavana.admin.model</modelPackage>
+							<generateSupportingFiles>true</generateSupportingFiles>
 							<configOptions>
-								<useBeanValidation>true</useBeanValidation>
-								<library>spring-boot</library>
+								<nullable>false</nullable>
 								<interfaceOnly>true</interfaceOnly>
+								<delegatePattern>false</delegatePattern>
+								<skipDefaultInterface>true</skipDefaultInterface>
+								<useJakartaEe>true</useJakartaEe>
+								<useBeanValidation>true</useBeanValidation>
 							</configOptions>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
+
+
+
 		</plugins>
 	</build>
 
