@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -13,7 +14,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Builder
 @Document(collection = "educationDetails")
 public class StudentOnboardingEntity {
+
     @Id
+    private String userId;
+
+    private List<Education> education;
+
+    @Data
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Builder
+    public static class Education {
         private String degree;
         private String specialization;
         private String institution;
@@ -22,4 +33,4 @@ public class StudentOnboardingEntity {
         private String location;
     }
 
-
+}

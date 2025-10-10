@@ -1,12 +1,13 @@
 openapi: 3.0.0
 info:
   title: Student Service API
-  description: API specification for the Student microservice.
+  description: API for adding multiple education details for a student.
   version: 1.0.0
+
 paths:
   /test:
     get:
-      summary:  test from Student Service
+      summary: Test from Student Service
       responses:
         '200':
           description: Successful response
@@ -17,7 +18,7 @@ paths:
 
   /api/students/education-details:
     post:
-      summary: Add a new student
+      summary: Add multiple education details for a student
       operationId: addStudentEducationDetails
       tags:
         - StudentOnboarding
@@ -29,44 +30,45 @@ paths:
               $ref: '#/components/schemas/StudentDTO'
       responses:
         '201':
-          description: Student created successfully
+          description: Student education details saved successfully
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/StudentDTO'
-        '400':
-          description: Invalid input
-        '500':
-          description: Server Error
+
 components:
   schemas:
     StudentDTO:
       type: object
-      required:
-        - degree
-        - specialization
-        - institution
-        - year
+      description: Represents a student with multiple education records.
       properties:
+        userId:
+          type: string
+          example: "USR101"
+        education:
+          type: array
+          items:
+            type: object
+            properties:
+              degree:
+                type: string
 
-        degree:
-          type: string
-          example: "B.Tech"
-        specialization:
-          type: string
-          example: "Computer Science"
-        institution:
-          type: string
-          example: "SSM Institute of Engineering and Technology"
-        cgpa:
-          type: number
-          format: double
-          minimum: 0
-          maximum: 10
-          example: 8.5
-        year:
-          type: integer
-          example: 2025
-        location:
-          type: string
-          example: "Dindigul, Tamil Nadu"
+              specialization:
+                type: string
+
+              institution:
+                type: string
+
+              cgpa:
+                type: number
+                format: double
+                example: 8.5
+              year:
+                type: integer
+                example: 2023
+              location:
+                type: string
+                example: "Dindigul, Tamil Nadu"
+      required:
+        - userId
+        - education
