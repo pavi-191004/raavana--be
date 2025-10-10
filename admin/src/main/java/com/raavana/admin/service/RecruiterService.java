@@ -66,8 +66,8 @@ public class RecruiterService {
                     return new ResponseStatusException(HttpStatus.NOT_FOUND, "Recruiter not found with id: " + id);
                     });
             recruiterMapper.updateEntityFromDto(recruiterDTO, existingEntity);
-            log.info("Recruiter details updated with this id:{}",id);
             RecruiterEntity savedEntity = recruiterRepository.save(existingEntity);
+            log.info("Recruiter details updated with this id:{}",id);
             return ResponseEntity.ok(recruiterMapper.entityToDto(savedEntity));
         } catch (Exception e) {
             log.error("Error while updating the recruiter with this id: {}", id, e);
@@ -81,6 +81,7 @@ public class RecruiterService {
             log.info("Deleting recruiter with id: {}",id);
             RecruiterEntity recruiterEntity = recruiterRepository.findById(id)
                     .orElseThrow(() ->{
+                          log.error("Recruiter is not found with id: {}",id);
                           return   new ResponseStatusException(HttpStatus.NOT_FOUND, "Recruiter not found with id: " + id);
                     });
             recruiterRepository.delete(recruiterEntity);
