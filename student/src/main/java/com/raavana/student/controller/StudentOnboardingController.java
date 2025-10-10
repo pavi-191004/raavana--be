@@ -18,5 +18,4 @@ public class StudentOnboardingController implements ApiApi {
         StudentDTO savedStudent = studentOnboardingService.saveStudent(body);
         return ResponseEntity.status(201).body(savedStudent);
     }
-
 }

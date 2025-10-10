@@ -22,5 +22,4 @@ public class StudentOnboardingService {
 
         return studentDTO;
     }
-
 }

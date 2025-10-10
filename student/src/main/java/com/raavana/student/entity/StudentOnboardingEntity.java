@@ -32,5 +32,4 @@ public class StudentOnboardingEntity {
         private Integer year;
         private String location;
     }
-
 }
