@@ -1,205 +1,103 @@
 package com.raavana.admin.service;
 
 import com.raavana.admin.entity.CompanyEntity;
+import com.raavana.admin.mapper.CompanyMapper;
 import com.raavana.admin.model.CompanyDTO;
 import com.raavana.admin.repository.CompanyRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-import java.util.ArrayList;
+
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class CompanyService {
 
-
     private final CompanyRepository companyRepository;
+    private final CompanyMapper companyMapper;
 
     public ResponseEntity<CompanyDTO> add(CompanyDTO companyDTO) {
         try {
-
-            // Build entity from DTO  fields
-            CompanyEntity companyEntities = CompanyEntity.builder()
-                    .companyName(companyDTO.getCompanyName())
-                    .industry(companyDTO.getIndustry())
-                    .website(companyDTO.getWebsite())
-                    .location(companyDTO.getLocation())
-                    .specialities(companyDTO.getSpecialities())
-                    .description(companyDTO.getDescription())
-                    .createdAt(companyDTO.getCreatedAt())
-                    .createdBy(companyDTO.getCreatedBy())
-                    .updatedAt(companyDTO.getUpdatedAt())
-                    .updatedBy(companyDTO.getUpdatedBy())
-                    .build();
-
-            CompanyEntity savedEntity = companyRepository.save(companyEntities);
-
-            // Map entity back to DTO
-            CompanyDTO savedDTO = new CompanyDTO();
-            savedDTO.setId(savedEntity.getId());
-            savedDTO.setCompanyName(savedEntity.getCompanyName());
-            savedDTO.setIndustry(savedEntity.getIndustry());
-            savedDTO.setWebsite(savedEntity.getWebsite());
-            savedDTO.setLocation(savedEntity.getLocation());
-            savedDTO.setSpecialities(savedEntity.getSpecialities());
-            savedDTO.setDescription(savedEntity.getDescription());
-            savedDTO.setCreatedAt(savedEntity.getCreatedAt());
-            savedDTO.setCreatedBy(savedEntity.getCreatedBy());
-            savedDTO.setUpdatedAt(savedEntity.getUpdatedAt());
-            savedDTO.setUpdatedBy(savedEntity.getUpdatedBy());
-
-            // 201 Created
-            return ResponseEntity.ok(savedDTO);
-
+            log.info("Adding new company: {}", companyDTO.getCompanyName());
+            CompanyEntity entity = companyMapper.dtoToEntity(companyDTO);
+            CompanyEntity saved = companyRepository.save(entity);
+            log.info("Company saved with id: {}", saved.getId());
+            return ResponseEntity.status(HttpStatus.CREATED).body(companyMapper.entityToDto(saved));
         } catch (Exception e) {
-            // 500 Internal Server Error
+            log.error("Error while adding company: {}", companyDTO.getCompanyName(), e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
     public ResponseEntity<CompanyDTO> getById(String id) {
-
         try {
-
-
-            // 404 Not Found
-            CompanyEntity companyEntities = companyRepository.findById(id)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Company not found with id: " + id));
-
-
-            // Mapping entity → DTO
-            CompanyDTO dto = new CompanyDTO();
-            dto.setId(companyEntities.getId());
-            dto.setCompanyName(companyEntities.getCompanyName());
-            dto.setLocation(companyEntities.getLocation());
-            dto.setIndustry(companyEntities.getIndustry());
-            dto.setWebsite(companyEntities.getWebsite());
-            dto.setSpecialities(companyEntities.getSpecialities());
-            dto.setDescription(companyEntities.getDescription());
-            dto.setCreatedAt(companyEntities.getCreatedAt());
-            dto.setCreatedBy(companyEntities.getCreatedBy());
-            dto.setUpdatedAt(companyEntities.getUpdatedAt());
-            dto.setUpdatedBy(companyEntities.getUpdatedBy());
-
-            // 200 Ok
-            return ResponseEntity.ok(dto);
-
-        }catch (Exception e){
-            // 500 Internal Server Error
+            log.info("Fetching company with id: {}", id);
+            CompanyEntity entity = companyRepository.findById(id)
+                    .orElseThrow(() -> {
+                        log.error("Company not found with id: {}", id);
+                        return new ResponseStatusException(HttpStatus.NOT_FOUND, "Company not found with id: " + id);
+                    });
+            return ResponseEntity.ok(companyMapper.entityToDto(entity));
+        } catch (Exception e) {
+            log.error("Error while fetching company with id : {}", id,  e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-
     }
 
     public ResponseEntity<CompanyDTO> update(String id, CompanyDTO companyDTO) {
-
         try {
+            log.info("Updating company with id: {}", id);
+            CompanyEntity entity = companyRepository.findById(id)
+                    .orElseThrow(() -> {
+                        log.error("Company not found with id: {}", id);
+                        return new ResponseStatusException(HttpStatus.NOT_FOUND, "Company not found");
+                    });
 
-
-            //404 Not Found
-            CompanyEntity companyEntities = companyRepository.findById(id)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "company not found"));
-
-            companyEntities.setCompanyName(companyDTO.getCompanyName());
-            companyEntities.setLocation(companyDTO.getLocation());
-            companyEntities.setIndustry(companyDTO.getIndustry());
-            companyEntities.setWebsite(companyDTO.getWebsite());
-            companyEntities.setSpecialities(companyDTO.getSpecialities());
-            companyEntities.setDescription(companyDTO.getDescription());
-            companyEntities.setCreatedAt(companyDTO.getCreatedAt());
-            companyEntities.setCreatedBy(companyDTO.getCreatedBy());
-            companyEntities.setUpdatedAt(companyDTO.getUpdatedAt());
-            companyEntities.setUpdatedBy(companyDTO.getUpdatedBy());
-
-            // Save updated entity
-            CompanyEntity updatedEntity = companyRepository.save(companyEntities);
-
-
-            CompanyDTO updatedDTO = new CompanyDTO();
-            updatedDTO.setId(updatedEntity.getId());
-            updatedDTO.setCompanyName(updatedEntity.getCompanyName());
-            updatedDTO.setLocation(updatedEntity.getLocation());
-            updatedDTO.setIndustry(updatedEntity.getIndustry());
-            updatedDTO.setWebsite(updatedEntity.getWebsite());
-            updatedDTO.setSpecialities(updatedEntity.getSpecialities());
-            updatedDTO.setDescription(updatedEntity.getDescription());
-            updatedDTO.setCreatedAt(updatedEntity.getCreatedAt());
-            updatedDTO.setCreatedBy(updatedEntity.getCreatedBy());
-            updatedDTO.setUpdatedAt(updatedEntity.getUpdatedAt());
-            updatedDTO.setUpdatedBy(updatedEntity.getUpdatedBy());
-
-            //200 Ok
-            return ResponseEntity.ok(updatedDTO);
-
-        }catch (Exception e) {
-
-            // 500 Internal Server Error
+            companyMapper.updateEntityFromDto(companyDTO, entity);
+            CompanyEntity updated = companyRepository.save(entity);
+            log.info("Company updated successfully with id: {}",id);
+            return ResponseEntity.ok(companyMapper.entityToDto(updated));
+        } catch (Exception e) {
+            log.error("Error while updating company with id : {}", id,  e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
 
-
-    public  ResponseEntity<String> delete(String id){
-
+    public ResponseEntity<String> delete(String id) {
         try {
-
-            //404 Not Found
-            CompanyEntity companyEntities = companyRepository.findById(id)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,"company not found"));
-            companyRepository.delete(companyEntities);
-
-            //200 Ok
-            return ResponseEntity.ok("Delete Successfully");
-
-        }catch (Exception e) {
-            // 500 Internal Server Error
+            log.info("Deleting company with id: {}", id);
+            CompanyEntity entity = companyRepository.findById(id)
+                    .orElseThrow(() -> {
+                        log.error("Company not found with id: {}", id);
+                        return new ResponseStatusException(HttpStatus.NOT_FOUND, "Company not found");
+                    });
+            companyRepository.delete(entity);
+            log.info("Company deleted successfully with id: {}", id);
+            return ResponseEntity.ok("Deleted Successfully");
+        } catch (Exception e) {
+            log.error("Error while deleting company with id : {}", id,  e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
-
 
     public ResponseEntity<List<CompanyDTO>> getAll() {
         try {
-            // Fetch all companies
-            List<CompanyEntity> entities = companyRepository.findAll();
-
-
-            // Map entities to DTOs
-            List<CompanyDTO> dtos = new ArrayList<>();
-            for (CompanyEntity entity : entities) {
-                CompanyDTO dto = new CompanyDTO();
-                dto.setId(entity.getId());
-                dto.setCompanyName(entity.getCompanyName());
-                dto.setLocation(entity.getLocation());
-                dto.setIndustry(entity.getIndustry());
-                dto.setWebsite(entity.getWebsite());
-                dto.setSpecialities(entity.getSpecialities());
-                dto.setDescription(entity.getDescription());
-                dto.setCreatedAt(entity.getCreatedAt());
-                dto.setCreatedBy(entity.getCreatedBy());
-                dto.setUpdatedAt(entity.getUpdatedAt());
-                dto.setUpdatedBy(entity.getUpdatedBy());
-                dtos.add(dto);
-            }
-
-            // 200 OK
+            log.info("Fetching all companies");
+            List<CompanyDTO> dtos = companyRepository.findAll()
+                    .stream()
+                    .map(companyMapper::entityToDto)
+                    .collect(Collectors.toList());
+            log.info("Total companies found: {}", dtos.size());
             return ResponseEntity.ok(dtos);
-
-        } catch (IllegalArgumentException e) {
-            // 400 Bad Request
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-
         } catch (Exception e) {
-            // 500 Internal Server Error
+            log.error("Error while fetching all companies", e);
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
     }
-
-
 }
-
-
-

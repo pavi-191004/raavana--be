@@ -166,15 +166,15 @@ components:
           type: string
           minLength: 2
           maxLength: 100
-          pattern: "^[A-Za-z0-9 .,&'-]+$"
-          x-pattern-message: "Company name can only contain letters, numbers, spaces, and basic punctuation."
-          example: "Microsoft"
+          pattern: "^[A-Za-z0-9 .,&'-]{2,100}$"
+          x-pattern-message: "Company name can only contain letters, numbers, spaces, and basic punctuation (. , & ' -)."
+          example: "L.G.B brothers ltd"
 
         location:
           type: string
           minLength: 3
           maxLength: 150
-          pattern: "^[A-Za-z0-9 ,.-]+$"
+          pattern: "^[A-Za-z0-9 .,-]{3,150}$"
           x-pattern-message: "Location should only contain letters, numbers, commas, periods, and hyphens."
           example: "Hyderabad, India"
 
@@ -182,7 +182,7 @@ components:
           type: string
           minLength: 2
           maxLength: 100
-          pattern: "^[A-Za-z ]+$"
+          pattern: "^[A-Za-z ]{2,100}$"
           x-pattern-message: "Industry must only contain alphabetic characters and spaces."
           example: "Software"
 
@@ -192,13 +192,12 @@ components:
           x-pattern-message: "Website must be a valid URL starting with http or https."
           example: "https://microsoft.com"
 
-
         specialities:
           type: string
           minLength: 3
           maxLength: 200
-          pattern: "^[A-Za-z0-9 ,.-]+$"
-          x-pattern-message: "Specialities can include words, numbers, commas, and periods."
+          pattern: "^[A-Za-z0-9 ,.-]{3,200}$"
+          x-pattern-message: "Specialities can include words, numbers, commas, periods, and hyphens."
           example: "Cloud, AI, Productivity, Tools"
 
         description:
@@ -210,6 +209,7 @@ components:
 
         createdAt:
           type: string
+          format: date-time
           example: "2025-09-18T00:00:00Z"
 
         createdBy:
@@ -218,6 +218,7 @@ components:
 
         updatedAt:
           type: string
+          format: date-time
           example: "2025-09-19T00:00:00Z"
 
         updatedBy:
