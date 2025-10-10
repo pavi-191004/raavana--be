@@ -4,7 +4,7 @@ import com.raavana.student.entity.StudentOnboardingEntity;
 import com.raavana.student.model.StudentDTO;
 import com.raavana.student.repository.StudentOnboardingRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j; // ✅ Add this import
+import lombok.extern.slf4j.Slf4j; 
 import org.springframework.stereotype.Service;
 
 @Service
