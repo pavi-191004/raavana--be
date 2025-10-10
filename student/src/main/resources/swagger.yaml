@@ -1,12 +1,13 @@
 openapi: 3.0.0
 info:
   title: Student Service API
-  description: API specification for the Student microservice.
+  description: API for adding multiple education details for a student.
   version: 1.0.0
+
 paths:
   /test:
     get:
-      summary:  test from Student Service
+      summary: Test from Student Service
       responses:
         '200':
           description: Successful response
@@ -14,3 +15,60 @@ paths:
             text/plain:
               schema:
                 type: string
+
+  /api/students/education-details:
+    post:
+      summary: Add multiple education details for a student
+      operationId: addStudentEducationDetails
+      tags:
+        - StudentOnboarding
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StudentDTO'
+      responses:
+        '201':
+          description: Student education details saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StudentDTO'
+
+components:
+  schemas:
+    StudentDTO:
+      type: object
+      description: Represents a student with multiple education records.
+      properties:
+        userId:
+          type: string
+          example: "USR101"
+        education:
+          type: array
+          items:
+            type: object
+            properties:
+              degree:
+                type: string
+
+              specialization:
+                type: string
+
+              institution:
+                type: string
+
+              cgpa:
+                type: number
+                format: double
+                example: 8.5
+              year:
+                type: integer
+                example: 2023
+              location:
+                type: string
+                example: "Dindigul, Tamil Nadu"
+      required:
+        - userId
+        - education
