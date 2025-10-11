@@ -4,13 +4,111 @@ info:
   description: API specification for the Student microservice.
   version: 1.0.0
 paths:
-  /test:
+  /achievements:
     get:
-      summary:  test from Student Service
+      summary: Get all achievements for a student
       responses:
         '200':
-          description: Successful response
+          description: List of achievements
           content:
-            text/plain:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AchievementDTO'
+
+
+    post:
+      summary: Add a new achievement
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AchievementDTO'
+      responses:
+        '201':
+          description: Achievement created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AchievementDTO'
+
+  /achievements/{achievementId}:
+    get:
+      summary: get achievements by id
+      parameters:
+        - name: achievementId
+          in: path
+          required: true
+          schema:
+            type: string
+
+      responses:
+        '200':
+          description: Achievement updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AchievementDTO'
+    put:
+      summary: Update an achievement
+      parameters:
+        - name: achievementId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AchievementDTO'
+      responses:
+        '200':
+          description: Achievement updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AchievementDTO'
+
+    delete:
+      summary: Delete an achievement
+      parameters:
+        - name: achievementId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Achievement deleted successfully
+          content:
+            application/json:
               schema:
                 type: string
+
+components:
+  schemas:
+    AchievementDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          example: "1"
+        title:
+          type: string
+          example: "Best Project Award"
+        event:
+          type: string
+          example: "National Level Technical Symposium"
+        date:
+          type: string
+          example: "2024-05-01"
+        awardedBy:
+          type: string
+          example: "ABC Institute"
+        description:
+          type: string
+
