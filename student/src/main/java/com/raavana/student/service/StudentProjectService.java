@@ -2,108 +2,55 @@ package com.raavana.student.service;
 
 
 import com.raavana.student.entity.StudentProjectEntity;
+import com.raavana.student.mapper.StudentProjectMapper;
 import com.raavana.student.model.StudentDTO;
 import com.raavana.student.repository.StudentProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class StudentProjectService {
 
-    private final StudentProjectRepository studentProjectRepository; // keep only this
+    private final StudentProjectRepository studentProjectRepository;
+    private StudentProjectMapper StudentProjectMapper;
 
-    public StudentDTO studentPost(StudentDTO studentDTO){
-        StudentProjectEntity studentProjectEntity = StudentProjectEntity.builder()
-                .id(studentDTO.getId())
-                .name(studentDTO.getName())
-                .startDate(studentDTO.getStartDate())
-                .endDate(studentDTO.getEndDate())
-                .description(studentDTO.getDescription())
-                .technologies(studentDTO.getTechnologies())
-                .build();
-
-        StudentProjectEntity savedEntity = studentProjectRepository.save(studentProjectEntity);
-
-        StudentDTO savedDTO = new StudentDTO();
-        savedDTO.setId(savedEntity.getId());
-        savedDTO.setName(savedEntity.getName());
-        savedDTO.setStartDate(savedEntity.getStartDate());
-        savedDTO.setEndDate(savedEntity.getEndDate());
-        savedDTO.setDescription(savedEntity.getDescription());
-        savedDTO.setTechnologies(savedEntity.getTechnologies());
-
-        return savedDTO;
-    }
-    public StudentDTO studentIdGet(String id){
-
-        StudentProjectEntity savedEntity = studentProjectRepository.findById(id).orElseThrow();
-
-        StudentDTO dto = new StudentDTO();
-        dto.setId(savedEntity.getId());
-        dto.setName(savedEntity.getName());
-        dto.setStartDate(savedEntity.getStartDate());
-        dto.setEndDate(savedEntity.getEndDate());
-        dto.setDescription(savedEntity.getDescription());
-        dto.setTechnologies(savedEntity.getTechnologies());
-
-        return dto;
+    public StudentDTO studentPost(StudentDTO studentDTO) {
+        StudentProjectEntity entity = com.raavana.student.mapper.StudentProjectMapper.toEntity(studentDTO);
+        StudentProjectEntity savedEntity = studentProjectRepository.save(entity);
+        return com.raavana.student.mapper.StudentProjectMapper.toDto(savedEntity);
     }
 
+    public StudentDTO studentIdGet(String id) {
+        StudentProjectEntity entity = studentProjectRepository.findById(id).orElseThrow();
+        return com.raavana.student.mapper.StudentProjectMapper.toDto(entity);
+    }
 
     public StudentDTO studentIdPut(String id, StudentDTO studentDTO) {
-        StudentProjectEntity savedEntity = studentProjectRepository.findById(id).orElseThrow();
+        StudentProjectEntity entity = studentProjectRepository.findById(id).orElseThrow();
 
-        // Update the saved entity
-        savedEntity.setId(studentDTO.getId());
-        savedEntity.setName(studentDTO.getName());
-        savedEntity.setStartDate(studentDTO.getStartDate());
-        savedEntity.setEndDate(studentDTO.getEndDate());
-        savedEntity.setDescription(studentDTO.getDescription());
-        savedEntity.setTechnologies(studentDTO.getTechnologies());
+        // Update fields
+        entity.setName(studentDTO.getName());
+        entity.setStartDate(studentDTO.getStartDate());
+        entity.setEndDate(studentDTO.getEndDate());
+        entity.setDescription(studentDTO.getDescription());
+        entity.setTechnologies(studentDTO.getTechnologies());
 
-        // Save updated entity
-        StudentProjectEntity updatedEntity = studentProjectRepository.save(savedEntity);
-
-        // Prepare DTO to return
-        StudentDTO dto = new StudentDTO();
-        dto.setId(updatedEntity.getId());
-        dto.setName(updatedEntity.getName());
-        dto.setStartDate(updatedEntity.getStartDate());
-        dto.setEndDate(updatedEntity.getEndDate());
-        dto.setDescription(updatedEntity.getDescription());
-        dto.setTechnologies(updatedEntity.getTechnologies());
-
-        return dto;
+        StudentProjectEntity updatedEntity = studentProjectRepository.save(entity);
+        return com.raavana.student.mapper.StudentProjectMapper.toDto(updatedEntity);
     }
 
-
-    public String studentIdDelete(String id){
-        StudentProjectEntity studentProjectEntity = studentProjectRepository.findById(id).orElseThrow();
-        studentProjectRepository.delete(studentProjectEntity);
+    public String studentIdDelete(String id) {
+        StudentProjectEntity entity = studentProjectRepository.findById(id).orElseThrow();
+        studentProjectRepository.delete(entity);
         return "Deleted Successfully";
     }
 
-
-    public List<StudentDTO> studentGet(){
-        List<StudentProjectEntity> studentProjectEntity = studentProjectRepository.findAll();
-
-        List<StudentDTO> studentDTOS =  new ArrayList<>();
-        for(StudentProjectEntity entity : studentProjectEntity){
-            StudentDTO dto = new StudentDTO();
-            dto.setId(entity.getId());
-            dto.setName(entity.getName());
-            dto.setStartDate(entity.getStartDate());
-            dto.setEndDate(entity.getEndDate());
-            dto.setDescription(entity.getDescription());
-            dto.setTechnologies(entity.getTechnologies());
-
-            studentDTOS.add(dto);
-        }
-
-        return studentDTOS;
+    public List<StudentDTO> studentGet() {
+        List<StudentProjectEntity> entityList = studentProjectRepository.findAll();
+        return com.raavana.student.mapper.StudentProjectMapper.toDtoList(entityList);
     }
 }
