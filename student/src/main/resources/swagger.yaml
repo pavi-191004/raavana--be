@@ -14,3 +14,83 @@ paths:
             text/plain:
               schema:
                 type: string
+  /student: # Path should be like this
+    post:
+      summary: Add new project
+      requestBody:
+        required: true
+        content:
+          application/json: # formate of data
+            schema:
+              $ref: '#/components/schemas/studentDTO'
+
+      responses:
+        '201':
+          description: Project created successfully
+
+    get:
+      summary: Get all projects
+      responses:
+        '200':
+          description: List of all projects
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/studentDTO'
+
+    /student/{id}:
+      put:
+        summary: Update a project
+        parameters:
+          - in: path
+            name: id
+            required: true
+            schema:
+              type: string
+            description: ID of the project to update
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/studentDTO'
+        responses:
+          '200':
+            description: Project updated successfully
+
+      delete:
+        summary: Delete a project
+        parameters:
+          - in: path
+            name: id
+            required: true
+            schema:
+              type: string
+            description: ID of the project to delete
+        responses:
+          '204':
+            description: Project deleted successfully
+
+components:
+  schemas:
+    studentDTO:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: Name of the project
+        startDate:
+          type: string
+        endDate:
+          type: string
+        description:
+          type: string
+          description: Project description
+        technologies:
+          type: string
+          description: Tools and technologies used
+
