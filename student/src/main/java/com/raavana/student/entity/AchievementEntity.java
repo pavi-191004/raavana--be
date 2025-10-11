@@ -19,8 +19,6 @@ import java.time.LocalDate;
 @Document(collection = "achievements")
 public class AchievementEntity {
 
-
-
     @Id
     private String id;
     private String title;

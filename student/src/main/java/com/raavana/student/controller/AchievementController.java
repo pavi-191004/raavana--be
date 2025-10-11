@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-public class AchievementController implements AchievementsApi {
+public class AchievementController implements AchievementsApi{
 
     private final AchievementService achievementService;
 
@@ -28,7 +28,6 @@ public class AchievementController implements AchievementsApi {
     @Override
     public ResponseEntity<AchievementDTO> achievementsAchievementIdGet(String achievementId) {
         return ResponseEntity.ok(achievementService.studentIdGet(achievementId));
-
     }
 
     @Override
@@ -39,15 +38,12 @@ public class AchievementController implements AchievementsApi {
     @Override
     public ResponseEntity<List<AchievementDTO>> achievementsGet() {
         return ResponseEntity.ok(achievementService.studentGet());
-
     }
 
     @Override
     public ResponseEntity<AchievementDTO> achievementsPost(AchievementDTO body) {
         return ResponseEntity.ok(achievementService.studentPost(body));
     }
-
-
 
 }
 
